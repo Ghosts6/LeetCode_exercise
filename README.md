@@ -1,2 +1,2 @@
-# LeetCode_exercise
-Leet code exercise solutions
+# LeetCode_exercise:
+I created this repo to sort my leet code exercise source code
