@@ -8,7 +8,7 @@ Feel free to browse through the folders corresponding to different languages to 
 
 ## 📁 Folder Structure
 
-- `cpp/`: Contains C++ solutions.
+- `c++/`: Contains C++ solutions.
 - `sql/`: Contains SQL solutions.
 - `js/`: Contains JavaScript solutions.
 - `bash/`: Contains Bash solutions.
