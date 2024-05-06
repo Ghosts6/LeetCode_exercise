@@ -12,6 +12,7 @@ Feel free to browse through the folders corresponding to different languages to 
 - `sql/`: Contains SQL solutions.
 - `js/`: Contains JavaScript solutions.
 - `bash/`: Contains Bash solutions.
+- `Solution/`: Contains My Solutions
 
 ## 🌟 Why This Repository?
 

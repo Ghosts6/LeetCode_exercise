@@ -102,7 +102,8 @@
     "stdexcept": "cpp",
     "streambuf": "cpp",
     "typeinfo": "cpp",
-    "bitset": "cpp"
+    "bitset": "cpp",
+    "sstream": "cpp"
   },
   "cSpell.words": [
     "Kdigits"
