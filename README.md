@@ -1,3 +1,4 @@
+![baner](https://github.com/Ghosts6/Local-website/blob/main/img/Baner.png)
 # 💻 LeetCode_exercise
 
 Welcome to my LeetCode exercise repository! Here, you'll find a collection of my solutions to various LeetCode problems, implemented in C++, SQL, JavaScript, and Bash.
