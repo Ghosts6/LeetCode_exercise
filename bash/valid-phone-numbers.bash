@@ -2,9 +2,15 @@
 
 filename="file.txt"
 
-while IFS= read -r line; do
+pattern="^(\([0-9]{3}\) [0-9]{3}-[0-9]{4}|[0-9]{3}-[0-9]{3}-[0-9]{4})$"
 
-    if [[ $line =~ ^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$ ]]; then
-        echo "$line"
-    fi
-done < "$filename"
+grep -E "$pattern" "$filename"
+
+# filename="file.txt"
+
+# while IFS= read -r line; do
+
+#     if [[ $line =~ ^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$ ]]; then
+#         echo "$line"
+#     fi
+# done < "$filename
