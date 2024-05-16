@@ -1,4 +1,3 @@
-// wrong answer time limit problem 
 #include <functional>
 #include <mutex>
 #include <condition_variable>
@@ -8,65 +7,47 @@
 class ZeroEvenOdd {
 private:
     int n;
-    int count;
     std::mutex mtx;
     std::condition_variable cv;
-    int turn;
+    int state;
+    int parity;
 
 public:
-    ZeroEvenOdd(int n) : n(n), count(1), turn(1) {}
+    ZeroEvenOdd(int n) {
+        this->n = n;
+        state = 0;
+        parity = 1;
+    }
 
     void zero(std::function<void(int)> printNumber) {
-        std::unique_lock<std::mutex> lock(mtx);
-        while (count <= n) {
-            while (turn != 1 && count <= n) {
-                cv.wait(lock);
-            }
-            if (count <= n) {
-                printNumber(0);
-                if (count % 2 == 0)
-                    turn = 2;
-                else
-                    turn = 3;
-                count++;
-                cv.notify_all();
-            }
+        for (int i = 0; i < n; ++i) {
+            std::unique_lock<std::mutex> lck(mtx);
+            cv.wait(lck, [this]() { return state == 0; });
+            state = 1;
+            printNumber(0);
+            cv.notify_all();
         }
     }
 
     void even(std::function<void(int)> printNumber) {
-        std::unique_lock<std::mutex> lock(mtx);
-        while (count <= n) {
-            while (turn != 2 && count <= n) {
-                cv.wait(lock);
-            }
-            if (count <= n && count % 2 == 0) {
-                printNumber(count);
-                count++;
-                turn = 1;
-                cv.notify_all();
-            }
-            else {
-                cv.notify_all();
-            }
+        for (int i = 2; i <= n; i += 2) {
+            std::unique_lock<std::mutex> lck(mtx);
+            cv.wait(lck, [this]() { return state == 1 && parity == 0; });
+            state = 0;
+            parity = 1;
+            printNumber(i);
+            cv.notify_all();
         }
     }
 
     void odd(std::function<void(int)> printNumber) {
-        std::unique_lock<std::mutex> lock(mtx);
-        while (count <= n) {
-            while (turn != 3 && count <= n) {
-                cv.wait(lock);
-            }
-            if (count <= n && count % 2 != 0) {
-                printNumber(count);
-                count++;
-                turn = 1;
-                cv.notify_all();
-            }
-            else {
-                cv.notify_all();
-            }
+        for (int i = 1; i <= n; i += 2) {
+            std::unique_lock<std::mutex> lck(mtx);
+            cv.wait(lck, [this]() { return state == 1 && parity == 1; });
+            state = 0;
+            parity = 0;
+            printNumber(i);
+            cv.notify_all();
         }
     }
 };
