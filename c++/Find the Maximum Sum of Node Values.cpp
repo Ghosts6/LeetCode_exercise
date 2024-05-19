@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
-#include <unordered_map>
 #include <algorithm>
+#include <climits>
 
 class Solution {
 public:
@@ -12,30 +12,29 @@ public:
             tree[edge[0]].push_back(edge[1]);
             tree[edge[1]].push_back(edge[0]);
         }
-        std::vector<std::unordered_map<int, long long>> dp(n);
-        return dfs(0, -1, nums, k, tree, dp);
-    }
-private:
-    long long dfs(int node, int parent, std::vector<int>& nums, int k, std::vector<std::vector<int>>& tree, std::vector<std::unordered_map<int, long long>>& dp) {
-        if (dp[node].count(nums[node])) return dp[node][nums[node]];
-        long long sumWithoutXor = nums[node];
-        long long sumWithXor = nums[node] ^ k;
-        long long totalSumWithoutXor = sumWithoutXor;
-        long long totalSumWithXor = sumWithXor;
 
-        for (int neighbor : tree[node]) {
-            if (neighbor == parent) continue;
-            nums[neighbor] ^= k;
-            long long childSumWithXor = dfs(neighbor, node, nums, k, tree, dp);
-            nums[neighbor] ^= k; 
-            long long childSumWithoutXor = dfs(neighbor, node, nums, k, tree, dp);
-            totalSumWithoutXor += childSumWithoutXor;
-            totalSumWithXor += childSumWithXor;
+        long long totalSum = 0;
+        int positiveMin = INT_MAX;
+        int negativeMax = INT_MIN;
+        int count = 0;
+
+        for (int nodeValue : nums) {
+            int nodeValAfterOperation = nodeValue ^ k;
+            totalSum += nodeValue;
+            int netChange = nodeValAfterOperation - nodeValue;
+
+            if (netChange > 0) {
+                positiveMin = std::min(positiveMin, netChange);
+                totalSum += netChange;
+                count += 1;
+            } else {
+                negativeMax = std::max(negativeMax, netChange);
+            }
         }
-
-        long long maxSum = std::max(totalSumWithoutXor, totalSumWithXor);
-        dp[node][nums[node]] = maxSum;
-        return maxSum;
+        if (count % 2 == 0) {
+            return totalSum;
+        }
+        return std::max(totalSum - positiveMin, totalSum + negativeMax);
     }
 };
 // test case
