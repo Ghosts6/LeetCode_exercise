@@ -1,7 +1,7 @@
 ![baner](https://github.com/Ghosts6/Local-website/blob/main/img/Baner.png)
 # 💻 LeetCode_exercise
 
-Welcome to my LeetCode exercise repository! Here, you'll find a collection of my solutions to various LeetCode problems, implemented in C++, SQL, JavaScript, and Bash.
+Welcome to my LeetCode exercise repository! Here, you'll find a collection of my solutions to various LeetCode problems, implemented in C++, C, Python, SQL, JavaScript, and Bash.
 
 ## 🚀 Getting Started
 
@@ -9,11 +9,13 @@ Feel free to browse through the folders corresponding to different languages to 
 
 ## 📁 Folder Structure
 
-- `c++/`: Contains C++ solutions.
-- `sql/`: Contains SQL solutions.
-- `js/`: Contains JavaScript solutions.
 - `bash/`: Contains Bash solutions.
+- `c/`: Contains C solutions.
+- `c++/`: Contains C++ solutions.
+- `js/`: Contains JavaScript solutions.
+- `python/`: Contains python solutions.
 - `Solution/`: Contains My Solutions
+- `sql/`: Contains SQL solutions.
 
 ## 🌟 Why This Repository?
 
