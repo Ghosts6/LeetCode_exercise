@@ -105,7 +105,14 @@
     "bitset": "cpp",
     "sstream": "cpp",
     "map": "cpp",
-    "condition_variable": "cpp"
+    "condition_variable": "cpp",
+    "ctime": "cpp",
+    "chrono": "cpp",
+    "ratio": "cpp",
+    "mutex": "cpp",
+    "semaphore": "cpp",
+    "stop_token": "cpp",
+    "thread": "cpp"
   },
   "cSpell.words": [
     "Kdigits"
