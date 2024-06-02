@@ -112,7 +112,8 @@
     "mutex": "cpp",
     "semaphore": "cpp",
     "stop_token": "cpp",
-    "thread": "cpp"
+    "thread": "cpp",
+    "stdio.h": "c"
   },
   "cSpell.words": [
     "Kdigits"
