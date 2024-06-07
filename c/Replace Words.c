@@ -3,7 +3,6 @@
 #include <string.h>
 #include <stdbool.h>
 
-// Helper function to check if a word starts with a root
 bool startsWith(const char *word, const char *root) {
     while (*root) {
         if (*word++ != *root++) {
@@ -13,7 +12,6 @@ bool startsWith(const char *word, const char *root) {
     return true;
 }
 
-// Function to replace derivatives with roots in the sentence
 char* replaceWords(char **roots, int rootsSize, char *sentence) {
     char *result = malloc(strlen(sentence) + 1);
     char *token = strtok(sentence, " ");
@@ -58,6 +56,6 @@ int main() {
     free(result1);
 
     testReplaceWords();
-    
+
     return 0;
 }
