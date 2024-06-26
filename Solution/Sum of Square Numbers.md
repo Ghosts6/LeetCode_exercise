@@ -24,8 +24,7 @@ The time complexity is O(√c) because in the worst case, each pointer will move
 The space complexity is O(1) because we only use a few extra variables to store the pointers and the sum, and no additional data structures are required.
 
 # 💻 Code
-### C
-```c
+```c []
 bool judgeSquareSum(int c) {
     if (c < 0) return false;
     
@@ -45,8 +44,7 @@ bool judgeSquareSum(int c) {
     return false;
 }
 ```
-### C++
-```cpp
+```c++ []
 class Solution {
 public:
     bool judgeSquareSum(int c) {
@@ -69,8 +67,7 @@ public:
     }
 };
 ```
-### Python
-```py
+```python []
 class Solution:
     def judgeSquareSum(self, c: int) -> bool:
         if c < 0:

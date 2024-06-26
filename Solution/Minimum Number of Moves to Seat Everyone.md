@@ -16,8 +16,7 @@ Sorting both arrays takes O(nlogn) and to calculate the total moves takes O(n) t
 The space complexity is O(1) for this case.
 
 ## 💻 Code
-### C
-```c
+```c []
 int compare(const void *a, const void *b) {
     return (*(int*)a - *(int*)b);
 }
@@ -39,8 +38,7 @@ int minMovesToSeat(int* seats, int seatsSize, int* students, int studentsSize) {
     return min_moves;
 }
 ```
-### C++
-```cpp
+```c++ []
 class Solution {
 public:
     int minMovesToSeat(std::vector<int>& seats, std::vector<int>& students) {

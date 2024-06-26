@@ -34,8 +34,7 @@ n (if the tree is a linear chain), resulting in O(n) space complexity. For a bal
 O(logn).
 
 ## 💻 Code
-### C++
-```cpp
+```C++ []
 class Solution {
 public:
     void bstToGst(TreeNode* root, int& sum) {
@@ -53,8 +52,7 @@ public:
     }
 };
 ```
-### C
-```c
+```C []
 void bstToGstHelper(struct TreeNode* root, int* sum) {
     if (root == NULL) return;
 
@@ -71,8 +69,7 @@ struct TreeNode* bstToGst(struct TreeNode* root) {
     return root;
 }
 ```
-### Python 
-```py
+```python []
 class Solution:
     def bstToGst(self, root):
         def bst_to_gst(node, acc_sum):

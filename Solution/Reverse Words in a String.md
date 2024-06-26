@@ -14,8 +14,7 @@ We need to reverse the order of words in a given string while preserving the ord
 - Space complexity:Splitting the string into an array of words requires additional space to store the words. The space complexity for this step is O(m), where m is the number of words.
 
 ## 💻 Code
-### C++
-```cpp
+```c++ []
 class Solution {
 public:
     std::string reverseWords(std::string s) {
@@ -35,16 +34,15 @@ public:
     }
 };
 ```
-### Python
-```py
+```python []
 class Solution:
     def reverseWords(self, s: str) -> str:
         words = s.split()
         words.reverse()
         return ' '.join(words)
 ```
-### java script
-```js
+
+```javascript []
 var reverseWords = function(s) {
     return s.trim().split(/\s+/).reverse().join(' ');
 };
