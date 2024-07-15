@@ -21,7 +21,7 @@ public:
 // test case
 int main() {
     Solution sol;
-    std::vector<int> happiness = {1, 2, 3};
+    std::vector<int> happiness = {1, 10, 500 , 30};
     int k = 2;
     int result = sol.maximumHappinessSum(happiness, k);
     std::cout << "result of test case: " << result << std::endl;
