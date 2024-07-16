@@ -1,4 +1,4 @@
-s# 📜 Find Common Characters
+# 📜 Find Common Characters
 
 
 ## 💡 Intuition
