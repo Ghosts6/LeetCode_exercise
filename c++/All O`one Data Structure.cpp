@@ -11,20 +11,20 @@ private:
         std::unordered_set<std::string> keys;
     };
 
-    std::list<Bucket> buckets;
-    std::unordered_map<std::string, int> keyCount;
-    std::unordered_map<int, std::list<Bucket>::iterator> countBucket;
+    std::list<Bucket> buckets; 
+    std::unordered_map<std::string, int> keyCount;  
+    std::unordered_map<int, std::list<Bucket>::iterator> countBucket; 
 
     std::list<Bucket>::iterator addBucketAfter(std::list<Bucket>::iterator it, int count) {
         auto newBucket = buckets.insert(std::next(it), {count, {}});
-        countBucket[count] = newBucket;
+        countBucket[count] = newBucket;  
         return newBucket;
     }
 
     void removeBucketIfEmpty(std::list<Bucket>::iterator it) {
         if (it->keys.empty()) {
-            countBucket.erase(it->count);
-            buckets.erase(it);
+            countBucket.erase(it->count);  
+            buckets.erase(it);  
         }
     }
 
@@ -32,72 +32,67 @@ public:
     AllOne() {}
 
     void inc(std::string key) {
-        int currentCount = keyCount[key];
+        int currentCount = keyCount[key]; 
         keyCount[key] = currentCount + 1;
 
         std::list<Bucket>::iterator currentBucket;
 
         if (currentCount > 0) {
             currentBucket = countBucket[currentCount];
-            currentBucket->keys.erase(key);
-            removeBucketIfEmpty(currentBucket);
+            currentBucket->keys.erase(key); 
+            removeBucketIfEmpty(currentBucket);  
         }
 
-        int newCount = currentCount + 1;
+        int newCount = currentCount + 1; 
+    
         if (countBucket.find(newCount) != countBucket.end()) {
-            currentBucket = countBucket[newCount];
+            currentBucket = countBucket[newCount];  
         } else {
-            if (currentCount == 0) {
-                currentBucket = buckets.empty() ? buckets.end() : buckets.begin();
-            } else {
-                currentBucket = countBucket[currentCount];
-            }
+            currentBucket = (currentCount == 0) ? buckets.begin() : countBucket[currentCount];
             currentBucket = addBucketAfter(currentBucket == buckets.end() ? buckets.begin() : currentBucket, newCount);
         }
-        currentBucket->keys.insert(key);
+        currentBucket->keys.insert(key);  
     }
 
     void dec(std::string key) {
         int currentCount = keyCount[key];
-        if (currentCount == 0) return;
+        if (currentCount == 0) return; 
 
-        keyCount[key] = currentCount - 1;
-
+        keyCount[key] = currentCount - 1;  
         std::list<Bucket>::iterator currentBucket = countBucket[currentCount];
-        currentBucket->keys.erase(key);
-        removeBucketIfEmpty(currentBucket);
+        currentBucket->keys.erase(key);  
+        removeBucketIfEmpty(currentBucket); 
 
         if (currentCount == 1) {
-            keyCount.erase(key);
+            keyCount.erase(key);  
             return;
         }
 
         int newCount = currentCount - 1;
+
         if (countBucket.find(newCount) != countBucket.end()) {
-            currentBucket = countBucket[newCount];
+            currentBucket = countBucket[newCount];  
         } else {
-            currentBucket = countBucket[currentCount];
             if (currentBucket != buckets.begin()) {
-                currentBucket = addBucketAfter(std::prev(currentBucket), newCount);
+                currentBucket = addBucketAfter(std::prev(currentBucket), newCount);  
             } else {
-                currentBucket = buckets.insert(buckets.begin(), {newCount, {}});
+                currentBucket = buckets.insert(buckets.begin(), {newCount, {}});  
                 countBucket[newCount] = currentBucket;
             }
         }
-        currentBucket->keys.insert(key);
+        currentBucket->keys.insert(key); 
     }
 
     std::string getMaxKey() {
-        if (buckets.empty()) return "";
-        return *(buckets.back().keys.begin());
+        if (buckets.empty()) return ""; 
+        return *(buckets.back().keys.begin());  
     }
 
     std::string getMinKey() {
-        if (buckets.empty()) return "";
-        return *(buckets.front().keys.begin());
+        if (buckets.empty()) return "";  
+        return *(buckets.front().keys.begin());  
     }
 };
-
 // Test case       
 int main() {
     AllOne* obj = new AllOne();
