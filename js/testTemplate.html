@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Test Template</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        main {
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 8px;
+        }
+        h1 {
+            color: #ffffff;
+        }
+        button {
+            padding: 8px 16px;
+            margin-top: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #2e2e2e;
+            border: 1px solid #444;
+            border-radius: 4px;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column; 
+            align-items: flex-start;
+            gap: 5px; 
+        }
+        .output-item {
+            background-color: #444;
+            padding: 5px;
+            border-radius: 4px;
+            width: 100%; 
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>JavaScript Testing Template</h1>
+        <button onclick="runTests()">Refresh Page</button>
+        <div id="output"></div>
+    </main>
+    <script src="Minimum Number of Swaps to Make the String Balanced.js"></script>
+    <script>
+        function displayMessages() {
+            const outputDiv = document.getElementById('output');
+            const messages = JSON.parse(localStorage.getItem('consoleMessages')) || [];
+            messages.forEach(message => {
+                const newItem = document.createElement('div');
+                newItem.className = 'output-item';
+                newItem.innerText = message;
+                outputDiv.appendChild(newItem);
+            });
+        }
+
+        displayMessages();
+
+        const originalConsoleLog = console.log;
+        console.log = function(...messages) {
+            originalConsoleLog(...messages);  
+
+            const storedMessages = JSON.parse(localStorage.getItem('consoleMessages')) || [];
+            messages.forEach(message => {
+                storedMessages.push(message);
+                const newItem = document.createElement('div');
+                newItem.className = 'output-item';
+                newItem.innerText = message;
+                document.getElementById('output').appendChild(newItem);
+            });
+
+            localStorage.setItem('consoleMessages', JSON.stringify(storedMessages));
+        };
+
+        function runTests() {
+            localStorage.removeItem('consoleMessages');
+            document.getElementById('output').innerHTML = '';
+
+            const expectedValues = [1, 2, 0]; 
+
+            const numberOfMessages = expectedValues.length; 
+
+            for (let i = 0; i < numberOfMessages; i++) {
+                console.log(`Expected answer for test case ${i + 1} is: ${expectedValues[i]}`);
+            }
+        }
+    </script>
+</body>
+</html>
