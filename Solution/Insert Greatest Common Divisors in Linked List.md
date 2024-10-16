@@ -1,19 +1,34 @@
-## Intuition & Approach
-in the given C++ code, the goal is to insert a new node between every two consecutive nodes in a singly linked list. The value of the new node is the greatest common divisor (GCD) of the values of the two consecutive nodes. The approach is broken down into the following steps:
+# 🧮 Insert Greatest Common Divisors in Linked List
 
-1.  Traversal of Linked List: The algorithm iterates through the linked list while the current node (curr) and the next node (curr->next) exist.
+## 📋 Problem Statement
+Given a singly linked list, the task is to insert a new node between every two consecutive nodes. The value of this new node should be the greatest common divisor (GCD) of the values of those two consecutive nodes.
 
-2.  GCD Calculation: For every pair of consecutive nodes, the GCD of their values is computed using the helper function greatest_common_divisors.
+## 💡 Intuition
+The problem can be approached by iterating over the linked list and inserting a node with the GCD value between each consecutive pair of nodes. By breaking down the task into individual steps, we can ensure the insertion process maintains the list structure while meeting the GCD condition.
 
-3.  Node Insertion: A new node with the GCD value is created and inserted between the two nodes.
+## 🔄 Approach
+The solution involves the following steps:
 
-4.  Moving the Pointer: After inserting the new node, the pointer moves two steps forward—first to the newly inserted node's next, which is the original next node.
+1. **🔍 Traversing the Linked List**: 
+   - We use a pointer (`curr`) to traverse the linked list.
+   - We continue the traversal as long as both the current node (`curr`) and its next node (`curr.next`) are not `null`, ensuring we have two consecutive nodes to work with.
 
-## Complexity
-- Time complexity:O(n)
-- Space complexity:O(1)
+2. **🧩 Calculating GCD**: 
+   - For each pair of consecutive nodes, we calculate the GCD of their values using a helper function. This function uses the Euclidean algorithm, which is efficient for GCD calculations.
 
-## Code
+3. **➕ Inserting New Nodes**: 
+   - A new node is created with the GCD value and inserted between the current and the next node.
+   - This step ensures that we adhere to the problem’s requirement of placing the GCD between each consecutive pair of nodes.
+
+4. **⏩ Moving the Pointer**: 
+   - After inserting the new node, we skip to the node following the newly inserted one to continue processing the next pair of nodes.
+   - This two-step movement keeps our traversal in sync with the updated list structure.
+
+## 📊 Complexity Analysis
+- **⏱ Time Complexity**: \(O(n)\), where \(n\) is the number of nodes in the list. This complexity arises because we visit each node once.
+- **💾 Space Complexity**: \(O(1)\), as we only use a constant amount of additional space for the pointer and temporary variables.
+
+## 💻 Code
 ```cpp []
 class Solution {
 public:
@@ -45,4 +60,28 @@ class Solution:
             curr.next = gcd_node
             curr = gcd_node.next
         return head
+```
+```js []
+function ListNode(val, next = null) {
+    this.val = val;
+    this.next = next;
+}
+
+function gcd(a, b) {
+    return b === 0 ? a : gcd(b, a % b);
+}
+
+var insertGreatestCommonDivisors = function(head) {
+    let curr = head;
+    while (curr !== null && curr.next !== null) {
+        const gcdValue = gcd(curr.val, curr.next.val);
+        const gcdNode = new ListNode(gcdValue);
+        
+        gcdNode.next = curr.next;
+        curr.next = gcdNode;
+        
+        curr = gcdNode.next;
+    }
+    return head;
+};
 ```
