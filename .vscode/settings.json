@@ -134,7 +134,8 @@
     "queue": "cpp",
     "stack": "cpp",
     "variant": "cpp",
-    "iomanip": "cpp"
+    "iomanip": "cpp",
+    "list": "cpp"
   },
   "cSpell.words": [
     "Kdigits"
