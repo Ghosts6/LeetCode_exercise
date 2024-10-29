@@ -1,24 +1,32 @@
 # 📜 Successful Pairs of Spells and Potions
 
-
 ## 💡 Intuition
-The problem requires finding how many successful pairs can be formed by multiplying each spell with a potion such that the product is greater than or equal to a given success threshold. To efficiently solve this, we can leverage sorting and binary search to quickly count the number of valid potions for each spell.
+The problem requires finding pairs of *spells* and *potions* such that the product of each pair meets or exceeds a given `success` threshold. We need to determine the number of valid potions for each spell efficiently to minimize time complexity. 
+
+This approach combines sorting and binary search to quickly count valid pairs:
+
+1. **Sorting the Potions Array**: Sorting allows us to apply binary search on the potions, enabling efficient lookups for the minimum required potion strength.
+2. **Binary Search**: For each spell, calculate the minimum potion strength needed to reach the `success` threshold. Using binary search, find the index of the first potion meeting this strength in the sorted potions array.
+3. **Counting Valid Pairs**: The number of successful pairs for a given spell is the count of potions from the found index to the end of the array.
+
+
 
 ## 🛠️ Approach
-1.  Sort the Potions Array: By sorting the potions array, we enable efficient searching. For each spell, the problem then reduces to finding the first potion that, when multiplied by the spell, meets or exceeds the success threshold.
+1. **Sort the Potions Array**: By sorting the `potions` array, the task of finding the first valid potion (i.e., the smallest potion that can create a successful pair) becomes efficient.
+   
+2. **Calculate Minimum Required Strength**: For each spell, calculate the required minimum strength for the potion as `minPotionStrength = success / spell`. This gives the threshold potion strength that must be met or exceeded.
+   
+3. **Binary Search for Valid Potions**: Perform a binary search on the sorted `potions` array to find the index of the first potion that meets or exceeds `minPotionStrength`. The count of valid potions is simply the number of potions from this index onward.
 
-2.  Binary Search for Valid Potions:
-For each spell, calculate the minimum potion strength needed to form a successful pair by dividing success by the spell.
-Use binary search to find the first potion in the sorted array that is equal to or greater than this calculated value.
-The count of successful pairs for that spell is simply the number of potions from this index to the end of the array.
+4. **Store the Result**: Record the count of valid potions for each spell in a `result` array.
 
-3.  Result Storage: Store the count of valid potions for each spell in a result array, which is then returned.
+
 
 ## ⏰ Complexity
-- Time complexity:O(m log m + n log m)
+- **Time Complexity**: \(O(m \log m + n \log m)\) where \(m\) is the length of `potions` and \(n\) is the length of `spells`. Sorting the `potions` array takes \(O(m \log m)\), and for each spell, we perform a binary search which takes \(O(\log m)\).
+- **Space Complexity**: \(O(n)\) for storing the results for each spell.
 
 
-- Space complexity:O(n)
 
 
 ## 💻 Code
@@ -74,4 +82,22 @@ int* successfulPairs(int* spells, int spellsSize, int* potions, int potionsSize,
     
     return result;
 }
+```
+```c++ []
+class Solution {
+public:
+    std::vector<int> successfulPairs(std::vector<int>& spells, std::vector<int>& potions, long long success) {
+        std::sort(potions.begin(), potions.end());
+        int m = potions.size();
+        std::vector<int> result;
+        
+        for (int spell : spells) {
+            long long min_potion_strength = (success + spell - 1) / spell;
+            int index = std::lower_bound(potions.begin(), potions.end(), min_potion_strength) - potions.begin();
+            result.push_back(m - index);
+        }
+        
+        return result;
+    }
+};
 ```
