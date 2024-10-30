@@ -1,21 +1,23 @@
-# 📜 Score of a String
+# 🎯 ASCII Score Calculator
 
-# 💡 Intuition
-The score of a string can be calculated by summing the absolute differences between the ASCII values of consecutive characters.
+## 🧠 Problem Description
+You are given a string `s`. The **score** of the string is defined as the sum of the absolute differences between the ASCII values of adjacent characters. Your task is to calculate and return this score.
 
-# 🛠️ Approach
-Iterate through the string from the second character to the end, and accumulate the absolute difference between the current character and the previous character.
+## 💡 Intuition
+To compute the score, we need to measure how much each character in the string differs from the one immediately before it. We can achieve this by summing the absolute differences between each consecutive character’s ASCII values.
 
-# ⏰ Complexity
-- Time complexity:
-O(n), where n is the length of the string. Each character is visited once.
+## 🚀 Approach
+1. **Initialize a score** variable to keep track of the accumulated differences.
+2. **Iterate through the string**, starting from the second character.
+3. For each character, calculate the **absolute difference** with the previous character and add it to the score.
+4. Return the final score once all characters are processed.
 
-- Space complexity:
-O(1), as we are only using a fixed amount of space for the score and the loop variable.
+## ⏳ Complexity Analysis
+- **Time Complexity**: \(O(n)\), where \(n\) is the length of the string, since we visit each character once.
+- **Space Complexity**: \(O(1)\), as we only use a fixed amount of space for storing the score.
 
-# 💻 Code
-### C++
-```cpp
+## 🔧 Code
+```cpp []
 class Solution {
 public:
     int scoreOfString(std::string s) {
@@ -27,8 +29,7 @@ public:
     }
 };
 ```
-### C
-```c
+```c []
 int scoreOfString(char* s) {
     int score = 0;
     for (int i = 1; s[i] != '\0'; ++i) {
@@ -37,8 +38,7 @@ int scoreOfString(char* s) {
     return score;
 }
 ```
-### python
-```py
+```python3 []
 class Solution:
     def scoreOfString(self, s: str) -> int:
         score = 0
