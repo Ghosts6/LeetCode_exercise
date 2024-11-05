@@ -1,12 +1,29 @@
-# Word Frequency Bash Script 📊
+# 🔍Word Frequency Counter in Bash 
+
+## Problem Description
+📝 **Task**: Given a text file, count the frequency of each word and display the results in descending order of frequency.
 
 ## Intuition
-🤔 Counting the frequency of each word in a text file can be done efficiently using a Bash script. 
+🤔 Counting word frequencies in a file can be efficiently accomplished with a Bash script. This approach is lightweight and leverages Bash's built-in associative arrays to store and manage the count for each word.
 
 ## Approach
-💡 We read the words from the file into an array, then iterate through each word, counting its occurrences using an associative array. Finally, we print each word along with its frequency, sorted by frequency in descending order.
+💡 **Steps**:
+1. **Read**: Load all words from the file into an array.
+2. **Count**: Iterate through each word, using an associative array to track occurrences.
+3. **Sort & Print**: Display each word with its frequency, sorted by frequency in descending order.
 
-# Bash Script
+This approach ensures that we process each word in a single pass (for counting), followed by another pass for sorting and printing.
+
+## Complexity Analysis 📊
+
+- **Time Complexity**: O(n log n)
+  - *Counting words*: O(n), where \( n \) is the total number of words.
+  - *Sorting*: O(n log n) for sorting by frequency.
+  
+- **Space Complexity**: O(u)
+  - *Memory*: O(u), where \( u \) is the number of unique words, as each unique word requires space in the associative array.
+
+## Solution Code 💻
 ```bash
 #!/bin/bash
 
@@ -20,3 +37,4 @@ done
 for word in "${!word_counts[@]}"; do
     echo "$word ${word_counts[$word]}"
 done | sort -k2nr
+```
