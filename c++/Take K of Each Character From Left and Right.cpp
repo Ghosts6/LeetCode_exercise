@@ -1,49 +1,36 @@
 #include <iostream>
 #include <string>
-#include <unordered_map>
+#include <algorithm>
+#include <vector>
+#include <climits>
 
 class Solution {
 public:
     int takeCharacters(std::string s, int k) {
-        int n = s.size();
-
-        std::unordered_map<char, int> freq;
-        for (char ch : s) {
-            freq[ch]++;
+        std::vector<int> count(3, 0);
+        for (char c : s) {
+            count[c - 'a']++;
         }
 
-        if (freq['a'] < k || freq['b'] < k || freq['c'] < k) {
+        if (*std::min_element(count.begin(), count.end()) < k) {
             return -1;
         }
 
-        std::unordered_map<char, int> left_freq, right_freq;
-        int left = 0, right = n - 1;
-        int min_minutes = n + 1;
+        int res = INT_MAX;
+        int l = 0;
 
-        int remaining_a = k, remaining_b = k, remaining_c = k;
-
-        for (int left_taken = 0; left_taken <= n; ++left_taken) {
-            if (left_taken > 0) {
-                left_freq[s[left_taken - 1]]++;
+        for (int r = 0; r < s.length(); r++) {
+            count[s[r] - 'a']--;
+            
+            while (*std::min_element(count.begin(), count.end()) < k) {
+                count[s[l] - 'a']++;
+                l++;
             }
 
-            while (right >= left_taken && (remaining_a > 0 || remaining_b > 0 || remaining_c > 0)) {
-                char right_char = s[right];
-                right_freq[right_char]++;
-                right--;
-
-                if (right_char == 'a' && remaining_a > 0) remaining_a--;
-                if (right_char == 'b' && remaining_b > 0) remaining_b--;
-                if (right_char == 'c' && remaining_c > 0) remaining_c--;
-            }
-
-            if (remaining_a == 0 && remaining_b == 0 && remaining_c == 0) {
-                int total_minutes = left_taken + (n - 1 - right);
-                min_minutes = std::min(min_minutes, total_minutes);
-            }
+            res = std::min(res, static_cast<int>(s.length()) - (r - l + 1));
         }
 
-        return min_minutes == n + 1 ? -1 : min_minutes;
+        return res;
     }
 };
 // Test cases
