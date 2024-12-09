@@ -1,18 +1,27 @@
+from bisect import bisect_left
+
 class Solution:
     def maxCount(self, banned, n, maxSum):
-        banned_set = set(banned)
+        banned.sort()
         total_sum = 0
         count = 0
-        
+
         for i in range(1, n + 1):
-            if i in banned_set:
+            if self.is_banned(banned, i):
                 continue
+            
             if total_sum + i > maxSum:
                 break
+            
             total_sum += i
             count += 1
         
         return count
+    
+    def is_banned(self, banned, x):
+        index = bisect_left(banned, x)
+        return index < len(banned) and banned[index] == x
+
 # Test cases
 if __name__ == "__main__":
     solution = Solution()
