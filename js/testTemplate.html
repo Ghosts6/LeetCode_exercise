@@ -64,7 +64,7 @@
         <button onclick="runTests()">Refresh Page</button>
         <div id="output"></div>
     </main>
-    <script src="Minimum Limit of Balls in a Bag.js"></script>
+    <script src="Interval Cancellation.js"></script>
     <script>
         function displayMessages() {
             const outputDiv = document.getElementById('output');
@@ -99,7 +99,11 @@
             localStorage.removeItem('consoleMessages');
             document.getElementById('output').innerHTML = '';
 
-            const expectedValues = [ 3, 2, 7]; 
+            const expectedValues = [ 
+            [ {"time": 0, "returned": 10},{"time": 30, "returned": 10},{"time": 60, "returned": 10},{"time": 90, "returned": 10},{"time": 120, "returned": 10},{"time": 150, "returned": 10} ],
+            [ {"time": 0, "returned": 10},{"time": 30, "returned": 10},{"time": 60, "returned": 10},{"time": 90, "returned": 10},{"time": 120, "returned": 10},{"time": 150, "returned": 10} ],
+            [ {"time": 0, "returned": 9},{"time": 50, "returned": 9},{"time": 100, "returned": 9},{"time": 150, "returned": 9} ],
+            ]; 
 
             const numberOfMessages = expectedValues.length; 
 

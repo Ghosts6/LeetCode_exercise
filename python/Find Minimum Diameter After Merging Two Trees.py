@@ -2,11 +2,11 @@ from collections import defaultdict, deque
 
 class Solution:
     def treeDiameter(self, edges):
-        def bfs(farthest_start, n):
+        def bfs(start, n):
             visited = [-1] * n
-            visited[farthest_start] = 0
-            q = deque([farthest_start])
-            farthest_node = farthest_start
+            visited[start] = 0
+            q = deque([start])
+            farthest_node = start
             max_distance = 0
             
             while q:
@@ -33,8 +33,7 @@ class Solution:
     def minimumDiameterAfterMerge(self, edges1, edges2):
         d1 = self.treeDiameter(edges1)
         d2 = self.treeDiameter(edges2)
-
-        return max((d1 + 1), (d2 + 1))
+        return max(d1, d2, (d1 + 1) // 2 + (d2 + 1) // 2 + 1)
 # Test cases
 if __name__ == "__main__":
     solution = Solution()
@@ -48,3 +47,8 @@ if __name__ == "__main__":
     edges2_1 = [[0,1],[0,2],[0,3]]
     edges2_2 = [[0,1]]
     print("Test case 2 OutPut:", solution.minimumDiameterAfterMerge(edges2_1, edges2_2)) # Expected Output: 3
+
+    # edge case
+    edges3_1 = [[0, 1]]
+    edges3_2 = [[0, 1]]
+    print("Edge case Output:", solution.minimumDiameterAfterMerge(edges3_1, edges3_2)) # Expected Output: 3
