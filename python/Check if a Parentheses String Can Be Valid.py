@@ -22,15 +22,15 @@ class Solution:
                 return False
         
         return True
-            
+
 # Test cases
 if __name__ == "__main__":
     solution = Solution()
     # case 1
-    s1 = "() ()";
-    locked1 = "010100";
-    print("Output of case 1 is", solution.canBeValid(s1, locked1)) # Expected Output: true
+    s1 = "()()"
+    locked1 = "0100"
+    print("Output of case 1 is", solution.canBeValid(s1, locked1)) # Expected Output: True
     # case 2
-    s2 = ")";
-    locked2 = "0";
-    print("Output of case 2 is", solution.canBeValid(s2, locked2)) # Expected Output: false
+    s2 = ")"
+    locked2 = "0"
+    print("Output of case 2 is", solution.canBeValid(s2, locked2)) # Expected Output: False
