@@ -1,46 +1,68 @@
-from math import factorial
-from collections import defaultdict
+from itertools import permutations
+from collections import Counter
 
 class Solution:
     def countGoodIntegers(self, n: int, k: int) -> int:
-        """
-        Returns the number of n-digit integers that can be rearranged to form a k-palindromic number.
-        """
-        def is_palindrome_possible(freq, n):
-            odd_count = sum(f % 2 for f in freq)
-            return odd_count <= 1 if n % 2 else odd_count == 0
+        self.k = k
+        self.n = n
+        self.cache = set()
+        return self.count_valid()
 
-        def build_smallest_palindrome(freq, n):
-            half = []
-            mid = ''
-            for d in range(10):
-                half.extend([str(d)] * (freq[d] // 2))
-                if freq[d] % 2 == 1:
-                    mid = str(d)
-            if half and half[0] == '0':
-                return None
-            half_str = ''.join(half)
-            return int(half_str + mid + half_str[::-1])
+    def is_valid_palindrome(self, digits):
+        """Check if we can rearrange digits to form a palindrome."""
+        count = Counter(digits)
+        odd_counts = sum(1 for v in count.values() if v % 2)
+        if self.n % 2 == 0:
+            return odd_counts == 0
+        else:
+            return odd_counts == 1
 
-        def count_digits(num):
-            freq = [0] * 10
-            for d in str(num):
-                freq[int(d)] += 1
-            return freq
+    def generate_palindromes(self, digits):
+        """Generate all unique palindrome numbers from digits."""
+        count = Counter(digits)
+        half = []
+        middle = ''
+        for digit in sorted(count.keys()):
+            times = count[digit] // 2
+            half.extend([digit] * times)
+            if count[digit] % 2 == 1:
+                middle = digit
 
-        start = 10 ** (n - 1)
-        end = 10 ** n
+        palindromes = set()
+        for perm in set(permutations(half)):
+            if not perm or perm[0] == '0':
+                continue
+            half_str = ''.join(perm)
+            full = half_str + middle + half_str[::-1]
+            if full[0] != '0' and int(full) % self.k == 0:
+                palindromes.add(full)
+        return palindromes
+
+    def count_valid(self):
+        if self.n == 1:
+            return sum(1 for i in range(1, 10) if i % self.k == 0)
+        
         count = 0
+        start = 10 ** (self.n - 1)
+        end = 10 ** self.n
 
         for num in range(start, end):
-            freq = count_digits(num)
-            if not is_palindrome_possible(freq, n):
+            s = str(num)
+            key = ''.join(sorted(s))
+            if key in self.cache:
+                count += 1
                 continue
-            pal = build_smallest_palindrome(freq, n)
-            if pal is not None and pal % k == 0:
+
+            if not self.is_valid_palindrome(s):
+                continue
+
+            palindromes = self.generate_palindromes(s)
+            if palindromes:
+                self.cache.add(key)
                 count += 1
 
         return count
+    
 # Main space
 if __name__ == "__main__":
     solution = Solution()
