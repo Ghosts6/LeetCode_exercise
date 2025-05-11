@@ -2,15 +2,13 @@ package JavaCode;
 
 public class TestTemplate {
     public static void main(String[] args) {
-        MinimumEqualSumofTwoArraysAfterReplacingZeros solver = new MinimumEqualSumofTwoArraysAfterReplacingZeros();
+        threeConsecutiveOdds solver = new threeConsecutiveOdds();
 
-        int[] nums1_1 = {3, 2, 0, 1, 0};
-        int[] nums2_1 = {6, 5, 0};
-        System.out.println(solver.minSum(nums1_1, nums2_1)); // Output: 12
+        int[] arr1 = {2, 6, 4, 1};
+        System.out.println(solver.threeConsecutiveOdds(arr1)); // false
 
-        int[] nums1_2 = {2, 0, 2, 0};
-        int[] nums2_2 = {1, 4};
-        System.out.println(solver.minSum(nums1_2, nums2_2)); // Output: -1
+        int[] arr2 = {1, 2, 34, 3, 4, 5, 7, 23, 12};
+        System.out.println(solver.threeConsecutiveOdds(arr2)); // true
     }  
 }
 
