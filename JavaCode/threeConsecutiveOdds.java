@@ -1,3 +1,5 @@
+package JavaCode;
+
 public class threeConsecutiveOdds {
     public boolean threeConsecutiveOdds(int[] arr) {
         int count = 0;
