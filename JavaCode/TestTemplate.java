@@ -2,13 +2,15 @@ package JavaCode;
 
 public class TestTemplate {
     public static void main(String[] args) {
-        threeConsecutiveOdds solver = new threeConsecutiveOdds();
+        RomanToInteger converter = new RomanToInteger();
 
-        int[] arr1 = {2, 6, 4, 1};
-        System.out.println(solver.threeConsecutiveOdds(arr1)); // false
+        String s1 = "III";
+        System.out.println("Input: " + s1 + " | Output: " + converter.romanToInt(s1)); // Output: 3
 
-        int[] arr2 = {1, 2, 34, 3, 4, 5, 7, 23, 12};
-        System.out.println(solver.threeConsecutiveOdds(arr2)); // true
-    }  
+        String s2 = "LVIII";
+        System.out.println("Input: " + s2 + " | Output: " + converter.romanToInt(s2)); // Output: 58
+
+        String s3 = "MCMXCIV";
+        System.out.println("Input: " + s3 + " | Output: " + converter.romanToInt(s3)); // Output: 1994
+    }
 }
-
