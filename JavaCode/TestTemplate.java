@@ -1,16 +1,18 @@
 package JavaCode;
+import java.util.Arrays;
 
 public class TestTemplate {
     public static void main(String[] args) {
-        RomanToInteger converter = new RomanToInteger();
+        SortColors sorter = new SortColors();
+	
+	// case 1
+        int[] nums1 = {2, 0, 2, 1, 1, 0};
+        sorter.sortColors(nums1);
+        System.out.println("Result of test case 1: " + Arrays.toString(nums1)); // Output: [0, 0, 1, 1, 2, 2]
 
-        String s1 = "III";
-        System.out.println("Input: " + s1 + " | Output: " + converter.romanToInt(s1)); // Output: 3
-
-        String s2 = "LVIII";
-        System.out.println("Input: " + s2 + " | Output: " + converter.romanToInt(s2)); // Output: 58
-
-        String s3 = "MCMXCIV";
-        System.out.println("Input: " + s3 + " | Output: " + converter.romanToInt(s3)); // Output: 1994
+	// case 2
+        int[] nums2 = {2, 0, 1};
+        sorter.sortColors(nums2);
+        System.out.println("Result of test case 2: " + Arrays.toString(nums2)); // Output: [0, 1, 2]
     }
 }
