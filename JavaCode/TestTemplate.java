@@ -5,19 +5,23 @@ import java.util.List;
 
 public class TestTemplate {
     public static void main(String[] args) {
-        LongestUnequalAdjacentGroupsSubsequenceI solver = new LongestUnequalAdjacentGroupsSubsequenceI();
+        FindWordsContainingCharacter solver = new FindWordsContainingCharacter();
 
+        // Test: findWordsContaining
         // case 1
-        String[] words1 = {"e", "a", "b"};
-        int[] groups1 = {0, 0, 1};
-        List<String> result1 = solver.getLongestSubsequence(words1, groups1);
-        System.out.println("Result of test case 1: " + result1); // Expected: [e, b]
+        String[] example1 = {"leet", "code"};
+        char x1 = 'e';
+        System.out.println("findWordsContaining example 1: " + solver.findWordsContaining(example1, x1)); // [0, 1]
 
         // case 2
-        String[] words2 = {"a", "b", "c", "d"};
-        int[] groups2 = {1, 0, 1, 1};
-        List<String> result2 = solver.getLongestSubsequence(words2, groups2);
-        System.out.println("Result of test case 2: " + result2); // Expected: [a, b, c]
+        String[] example2 = {"abc", "bcd", "aaaa", "cbc"};
+        char x2 = 'a';
+        System.out.println("findWordsContaining example 2: " + solver.findWordsContaining(example2, x2)); // [0, 2]
+
+        // case 3
+        String[] example3 = {"abc", "bcd", "aaaa", "cbc"};
+        char x3 = 'z';
+        System.out.println("findWordsContaining example 3: " + solver.findWordsContaining(example3, x3)); // []
     }
 }
 
