@@ -1,27 +1,19 @@
 package JavaCode;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class TestTemplate {
     public static void main(String[] args) {
-        FindWordsContainingCharacter solver = new FindWordsContainingCharacter();
+        DivisibleAndNondivisibleSumsDifference solver = new DivisibleAndNondivisibleSumsDifference();
 
-        // Test: findWordsContaining
-        // case 1
-        String[] example1 = {"leet", "code"};
-        char x1 = 'e';
-        System.out.println("findWordsContaining example 1: " + solver.findWordsContaining(example1, x1)); // [0, 1]
+        // Case 1
+        int n1 = 10, m1 = 3;
+        System.out.println("differenceOfSums example 1: " + solver.differenceOfSums(n1, m1)); // Expected: 19
 
-        // case 2
-        String[] example2 = {"abc", "bcd", "aaaa", "cbc"};
-        char x2 = 'a';
-        System.out.println("findWordsContaining example 2: " + solver.findWordsContaining(example2, x2)); // [0, 2]
+        // Case 2
+        int n2 = 5, m2 = 6;
+        System.out.println("differenceOfSums example 2: " + solver.differenceOfSums(n2, m2)); // Expected: 15
 
-        // case 3
-        String[] example3 = {"abc", "bcd", "aaaa", "cbc"};
-        char x3 = 'z';
-        System.out.println("findWordsContaining example 3: " + solver.findWordsContaining(example3, x3)); // []
+        // Case 3
+        int n3 = 5, m3 = 1;
+        System.out.println("differenceOfSums example 3: " + solver.differenceOfSums(n3, m3)); // Expected: -15
     }
 }
-
