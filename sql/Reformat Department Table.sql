@@ -1,15 +1,16 @@
-SELECT id,
-    SUM(CASE WHEN month = 'Jan' THEN revenue ELSE null END) AS Jan_Revenue,
-    SUM(CASE WHEN month = 'Feb' THEN revenue ELSE null END) AS Feb_Revenue,
-    SUM(CASE WHEN month = 'Mar' THEN revenue ELSE null END) AS Mar_Revenue,
-    SUM(CASE WHEN month = 'Apr' THEN revenue ELSE null END) AS Apr_Revenue,
-    SUM(CASE WHEN month = 'May' THEN revenue ELSE null END) AS May_Revenue,
-    SUM(CASE WHEN month = 'Jun' THEN revenue ELSE null END) AS Jun_Revenue,
-    SUM(CASE WHEN month = 'Jul' THEN revenue ELSE null END) AS Jul_Revenue,
-    SUM(CASE WHEN month = 'Aug' THEN revenue ELSE null END) AS Aug_Revenue,
-    SUM(CASE WHEN month = 'Sep' THEN revenue ELSE null END) AS Sep_Revenue,
-    SUM(CASE WHEN month = 'Oct' THEN revenue ELSE null END) AS Oct_Revenue,
-    SUM(CASE WHEN month = 'Nov' THEN revenue ELSE null END) AS Nov_Revenue,
-    SUM(CASE WHEN month = 'Dec' THEN revenue ELSE null END) AS Dec_Revenue
-FROM Department
+SELECT
+    id,
+    SUM(revenue) FILTER (WHERE month = 'Jan') AS jan_revenue,
+    SUM(revenue) FILTER (WHERE month = 'Feb') AS feb_revenue,
+    SUM(revenue) FILTER (WHERE month = 'Mar') AS mar_revenue,
+    SUM(revenue) FILTER (WHERE month = 'Apr') AS apr_revenue,
+    SUM(revenue) FILTER (WHERE month = 'May') AS may_revenue,
+    SUM(revenue) FILTER (WHERE month = 'Jun') AS jun_revenue,
+    SUM(revenue) FILTER (WHERE month = 'Jul') AS jul_revenue,
+    SUM(revenue) FILTER (WHERE month = 'Aug') AS aug_revenue,
+    SUM(revenue) FILTER (WHERE month = 'Sep') AS sep_revenue,
+    SUM(revenue) FILTER (WHERE month = 'Oct') AS oct_revenue,
+    SUM(revenue) FILTER (WHERE month = 'Nov') AS nov_revenue,
+    SUM(revenue) FILTER (WHERE month = 'Dec') AS dec_revenue
+FROM department
 GROUP BY id;
