@@ -2,18 +2,14 @@ package JavaCode;
 
 public class TestTemplate {
     public static void main(String[] args) {
-        DivisibleAndNondivisibleSumsDifference solver = new DivisibleAndNondivisibleSumsDifference();
+        LexicographicalNumbers solver = new LexicographicalNumbers();
 
         // Case 1
-        int n1 = 10, m1 = 3;
-        System.out.println("differenceOfSums example 1: " + solver.differenceOfSums(n1, m1)); // Expected: 19
+        int n1 = 13;
+        System.out.println("result of test case 1: " + solver.lexicalOrder(n1)); // Expected: [1,10,11,12,13,2,3,4,5,6,7,8,9]
 
         // Case 2
-        int n2 = 5, m2 = 6;
-        System.out.println("differenceOfSums example 2: " + solver.differenceOfSums(n2, m2)); // Expected: 15
-
-        // Case 3
-        int n3 = 5, m3 = 1;
-        System.out.println("differenceOfSums example 3: " + solver.differenceOfSums(n3, m3)); // Expected: -15
+        int n2 = 2;
+        System.out.println("result of test case 2: " + solver.lexicalOrder(n2)); // Expected: [1, 2]
     }
 }
