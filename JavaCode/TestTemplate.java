@@ -2,14 +2,12 @@ package JavaCode;
 
 public class TestTemplate {
     public static void main(String[] args) {
-        LexicographicalNumbers solver = new LexicographicalNumbers();
+        MaximumDifferenceByRemappingADigit solver = new MaximumDifferenceByRemappingADigit();
 
-        // Case 1
-        int n1 = 13;
-        System.out.println("result of test case 1: " + solver.lexicalOrder(n1)); // Expected: [1,10,11,12,13,2,3,4,5,6,7,8,9]
+        int n1 = 11891;
+        System.out.println("result of test case 1: " + solver.minMaxDifference(n1)); // Expected: 99009
 
-        // Case 2
-        int n2 = 2;
-        System.out.println("result of test case 2: " + solver.lexicalOrder(n2)); // Expected: [1, 2]
+        int n2 = 90;
+        System.out.println("result of test case 2: " + solver.minMaxDifference(n2)); // Expected: 99
     }
 }
