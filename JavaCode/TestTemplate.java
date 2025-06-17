@@ -2,12 +2,15 @@ package JavaCode;
 
 public class TestTemplate {
     public static void main(String[] args) {
-        MaximumDifferenceByRemappingADigit solver = new MaximumDifferenceByRemappingADigit();
+        LongestConsecutiveSequence solver = new LongestConsecutiveSequence();
 
-        int n1 = 11891;
-        System.out.println("result of test case 1: " + solver.minMaxDifference(n1)); // Expected: 99009
+        int[] test1 = {100, 4, 200, 1, 3, 2};
+        System.out.println("Result of test case 1: " + solver.longestConsecutive(test1)); // Expected: 4
 
-        int n2 = 90;
-        System.out.println("result of test case 2: " + solver.minMaxDifference(n2)); // Expected: 99
+        int[] test2 = {0, 3, 7, 2, 5, 8, 4, 6, 0, 1};
+        System.out.println("Result of test case 2: " + solver.longestConsecutive(test2)); // Expected: 9
+
+        int[] test3 = {1, 0, 1, 2};
+        System.out.println("Result of test case 3: " + solver.longestConsecutive(test3)); // Expected: 3
     }
 }
