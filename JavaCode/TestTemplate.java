@@ -4,19 +4,17 @@ import java.util.Arrays;
 
 public class TestTemplate {
     public static void main(String[] args) {
-        DivideaStringIntoGroupsOfSizeK solver = new DivideaStringIntoGroupsOfSizeK();
+        ValidAnagram solver = new ValidAnagram();
+	
+	// case 1
+        String s1 = "anagram";
+        String t1 = "nagaram"; 
+        System.out.println("Result of test case 1: " + solver.isAnagram(s1, t1)); // Expected: true
 
-        String s1 = "abcdefghi";
-        int k1 = 3;
-        char fill1 = 'x';
-        System.out.println("Result of test case 1: " + Arrays.toString(solver.divideString(s1, k1, fill1)));
-        // Expected: ["abc", "def", "ghi"]
-
-        String s2 = "abcdefghij";
-        int k2 = 3;
-        char fill2 = 'x';
-        System.out.println("Result of test case 2: " + Arrays.toString(solver.divideString(s2, k2, fill2)));
-        // Expected: ["abc", "def", "ghi", "jxx"]
+	// case 2
+        String s2 = "rat";
+        String t2 = "car";
+        System.out.println("Result of test case 2: " + solver.isAnagram(s2, t2)); // Expected: false
     }
 }
 
