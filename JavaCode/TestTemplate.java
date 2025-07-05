@@ -4,17 +4,16 @@ import java.util.Arrays;
 
 public class TestTemplate {
     public static void main(String[] args) {
-        ValidAnagram solver = new ValidAnagram();
-	
+        FindLuckyIntegerInAnArray finder = new FindLuckyIntegerInAnArray();
 	// case 1
-        String s1 = "anagram";
-        String t1 = "nagaram"; 
-        System.out.println("Result of test case 1: " + solver.isAnagram(s1, t1)); // Expected: true
-
+        int[] arr1 = {2, 2, 3, 4};
+        System.out.println(finder.findLucky(arr1)); // Output: 2
 	// case 2
-        String s2 = "rat";
-        String t2 = "car";
-        System.out.println("Result of test case 2: " + solver.isAnagram(s2, t2)); // Expected: false
+        int[] arr2 = {1, 2, 2, 3, 3, 3};
+        System.out.println(finder.findLucky(arr2)); // Output: 3
+	// case 3
+        int[] arr3 = {2, 2, 2, 3, 3};
+        System.out.println(finder.findLucky(arr3)); // Output: -1
     }
 }
 
