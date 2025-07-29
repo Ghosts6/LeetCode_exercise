@@ -4,16 +4,16 @@ import java.util.Arrays;
 
 public class TestTemplate {
     public static void main(String[] args) {
-        FindLuckyIntegerInAnArray finder = new FindLuckyIntegerInAnArray();
-	// case 1
-        int[] arr1 = {2, 2, 3, 4};
-        System.out.println(finder.findLucky(arr1)); // Output: 2
-	// case 2
-        int[] arr2 = {1, 2, 2, 3, 3, 3};
-        System.out.println(finder.findLucky(arr2)); // Output: 3
-	// case 3
-        int[] arr3 = {2, 2, 2, 3, 3};
-        System.out.println(finder.findLucky(arr3)); // Output: -1
+        shiftingLetters shifter = new shiftingLetters();
+
+        // case 1
+        String s1 = "abc";
+        int[] shifts1 = {3, 5, 9};
+        System.out.println(shifter.shiftingLetters(s1, shifts1)); // Output: "rpl"
+
+        // case 2
+        String s2 = "aaa";
+        int[] shifts2 = {1, 2, 3};
+        System.out.println(shifter.shiftingLetters(s2, shifts2)); // Output: "gfd"
     }
 }
-
