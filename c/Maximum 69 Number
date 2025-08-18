@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+int maximum69Number(int num) {
+    int temp = num;
+    int pos = -1;    
+    int digitPos = 0;
+
+    while (temp > 0) {
+        if (temp % 10 == 6) {
+            pos = digitPos; 
+        }
+        temp /= 10;
+        digitPos++;
+    }
+
+    if (pos == -1) return num;
+
+    return num + 3 * (int)pow(10, pos);
+}
+// Test cases
+int main() {
+    // case 1
+    printf("Result of Test 1: %d\n", maximum69Number(9669));  // Expected 9969
+    // case 2
+    printf("Result of Test 2: %d\n", maximum69Number(9996));  // Expected 9999
+    // case 3
+    printf("Result of Test 3: %d\n", maximum69Number(9999));  // Expected 9999
+
+    return 0;
+}
