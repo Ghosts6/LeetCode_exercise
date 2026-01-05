@@ -1,24 +1,27 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <cmath>
 #include <climits>
 
+// optimize
 class Solution {
 public:
     long long maxMatrixSum(std::vector<std::vector<int>>& matrix) {
-        int n = matrix.size();
         long long totalSum = 0;
         int minAbsValue = INT_MAX;
         int negativeCount = 0;
 
-        for (int i = 0; i < n; ++i) {
-            for (int j = 0; j < n; ++j) {
-                int value = matrix[i][j];
-                totalSum += static_cast<long long>(abs(value));
-                minAbsValue = std::min(minAbsValue, abs(value));
+        for (const auto& row : matrix) {
+            for (int value : row) {
+                int absVal = std::abs(value);
+                totalSum += absVal;
+                
                 if (value < 0) {
                     negativeCount++;
+                }
+                
+                if (absVal < minAbsValue) {
+                    minAbsValue = absVal;
                 }
             }
         }
@@ -30,6 +33,7 @@ public:
         return totalSum;
     }
 };
+
 // Test cases
 int main() {
     Solution solution;
